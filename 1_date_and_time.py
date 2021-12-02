@@ -1,3 +1,8 @@
+#!env/bin/python3
+
+from datetime import datetime, timedelta
+from tzlocal import get_localzone
+
 """
 Домашнее задание №2
 
@@ -9,19 +14,21 @@
 """
 
 def print_days():
-    """
-    Эта функция вызывается автоматически при запуске скрипта в консоли
-    В ней надо заменить pass на ваш код
-    """
-    pass
+    local_tz = get_localzone()
+    dt_now = datetime.now(local_tz).strftime('%d.%m.%Y')
+    dt_yd = (datetime.now(local_tz) - timedelta(days = 1)).strftime('%d.%m.%Y')
+    dt_30d_ago = (datetime.now(local_tz) - timedelta(days = 30)).strftime('%d.%m.%Y')
+
+    print(f'Yesterday was {dt_yd}')
+    print(f'Today is {dt_now}')
+    print(f'30 days ago was {dt_30d_ago}')
+
+
 
 
 def str_2_datetime(date_string):
-    """
-    Эта функция вызывается автоматически при запуске скрипта в консоли
-    В ней надо заменить pass на ваш код
-    """
-    pass
+    date_dstr = datetime.strptime(date_string, '%y/%m/%d %H:%M:%S.%f')
+    return f'Date from string is {date_dstr}'
 
 if __name__ == "__main__":
     print_days()
